@@ -5,11 +5,12 @@ import java.util.List;
 
 public class Quintuplet {
 
+	private static final int QUINTUPLET_CLOSED = 0;
+	private static final int QUINTUPLET_EMPTY = 1;
+	private static final int QUINTUPLET_AI = 6;
+	private static final int QUINTUPLET_PLAYER = 5;
 	
-	public static final int valCircle = 5;
-	public static final int valCross = 6;
-	
-	private int valeur = 0;
+	private int value = 0;
 	private List<Case> cases = new ArrayList<Case>();
 	private boolean open = true;
 	
@@ -26,20 +27,39 @@ public class Quintuplet {
 		int numS;
 		for(Case c : cases) {
 			if(c.getStatut() != 0) {
-				if(nbS == 0) {  //premiére case avec un symbole
-					nbS++;
-					numS = c.getStatut();
-				}
-				if(c.getStatut() != numS) { //deux case de deux symbole différent
+				if(nbS != 0 && c.getStatut() != numS) { //deux case de deux symbole différent
 					open = false;
-					valeur = 0;
+					value = QUINTUPLET_CLOSED;
 					break;
 				}
+				
+				if(nbS == 0) {  //premiére case avec un symbole
+					numS = c.getStatut();
+				}
+				
 				nbS++;  // deux case de meme symbole
 				
 			}
 		}
-		if()   //calcule valeur
+		if(open) {			//calcule valeur
+			if(nbS == 0){
+				value = QUINTUPLET_EMPTY;
+			}
+			else {
+				if(numS == 2) {
+					value = nbS * QUINTUPLET_AI;
+				}
+				else {
+					value = nbS * QUINTUPLET_PLAYER;
+				}
+			}
+				
+		}
 	}
+	
+	public int getValue() {
+		return value;
+	}
+	
 	
 }
