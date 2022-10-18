@@ -24,7 +24,7 @@ public class Quintuplet {
 	
 	public void setNewVal() {
 		int nbS = 0;
-		int numS;
+		int numS = 0;
 		for(Case c : cases) {
 			if(c.getStatut() != 0) {
 				if(nbS != 0 && c.getStatut() != numS) { //deux case de deux symbole différent
