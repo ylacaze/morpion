@@ -46,4 +46,16 @@ public class Case {
 		lQuintu = qList;
 	}
 	
+	public int getPosX() {
+		return posx;
+	}
+	
+	public int getPosY() {
+		return posy;
+	}
+	
+	public int getValue() {
+		return value;
+	}
+	
 }

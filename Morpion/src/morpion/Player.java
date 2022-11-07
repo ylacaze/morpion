@@ -25,9 +25,9 @@ public class Player {
 		int x = 0 ;
 		for(Case c : p.cases) {
 			
-			if(c.getx() > x) { // Methode a voir après classe case 
+			if(c.getPosX() > x) { // Methode a voir après classe case 
 				System.out.println("\n");
-				x = c.getx();
+				x = c.getPosX();
 			}
 			System.out.println("[" + Symbol.getForm(c.getStatut()).getChar() + "]"); // A changer pour mettre vrai méthode
 		}
@@ -56,7 +56,7 @@ public class Player {
 	    
 	    for(Case c : p.cases)
 	    {
-	    	if(c.x == posx && c.y == posy)
+	    	if(c.getPosX() == posx && c.getPosY() == posy)
 	    	{
 	    		return c;
 	    	}
