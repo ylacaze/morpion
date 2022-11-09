@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Quintuplet {
 
-	private static final int QUINTUPLET_CLOSED = 0;
-	private static final int QUINTUPLET_EMPTY = 1;
-	private static final int QUINTUPLET_AI = 6;
-	private static final int QUINTUPLET_PLAYER = 5;
+	public static final int QUINTUPLET_CLOSED = 0;
+	public static final int QUINTUPLET_EMPTY = 1;
+	public static final int QUINTUPLET_AI = 6;
+	public static final int QUINTUPLET_PLAYER = 5;
 	
 	private int value = 0;
 	private List<Case> cases = new ArrayList<Case>();

@@ -19,6 +19,10 @@ public enum Symbol {
 		
 	}
 	
+	public int getVal() {
+		return this.val;
+	}
+	
 	private static void Fill() {
 		if(!filled) {
 			liste.add(EMPTY);
