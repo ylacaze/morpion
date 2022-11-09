@@ -14,9 +14,9 @@ public class Plateau {
 	private Case plateau[][] = new Case[0][0];
 	
 	public Plateau(int posx, int posy) {
-		maxX = posx;
-		maxY = posy;
-		this.plateau = new Case[maxX][maxY];
+		maxX = posx-1;
+		maxY = posy-1;
+		this.plateau = new Case[posx][posy];
 	}
 	
 	
@@ -54,21 +54,18 @@ public class Plateau {
 	public List<Quintuplet> initBoard(){
 		
 		//init cases
-		for(int i = 0; i<maxY;i++) {
-			for(int j = 0; j<maxX; j++) {
+		for(int i = 0; i<maxY+1;i++) {
+			for(int j = 0; j<maxX+1; j++) {
 				plateau[j][i] = new Case(j,i,0);
 			}
 		}
 		
 		
-		
-		
-		Case c = plateau[0][0];
 		//int ii = 0;
 		for(int i = 0; i < this.plateau.length; i++ ) {
 			
 			for(int j = 0; j < plateau[i].length ; j++) {
-				c = plateau[i][j];
+				Case c = plateau[i][j];
 				
 				//on verifie les cases par rapport à la droite
 				if(c.getPosX() + 4 <= maxX) {
@@ -86,7 +83,7 @@ public class Plateau {
 				}
 				
 				//on vérifie pour finir les diagonales supérieures Haut-Droite 
-				if(c.getPosX() + 4 <= maxX && c.getPosY() - 4 <= 0) {
+				if(c.getPosX() + 4 <= maxX && c.getPosY() - 4 >= 0) {
 					quintupletsTT.add(new Quintuplet(c, plateau[i+1][j-1], plateau[i+2][j-2], plateau[i+3][j-3], plateau[i+4][j-4]));
 				}
 			}

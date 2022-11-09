@@ -62,7 +62,10 @@ public class Player {
 	    {
 	    	if(c.getPosX() == posx && c.getPosY() == posy)
 	    	{
-	    		return c;
+	    		if(c.getStatut() != 0 ) {
+	    			 System.err.println("cette case est déjà joué");
+	    			 return play(p);
+	    		}else return c;
 	    	}
 	    }
 	    System.err.println("ta case n'est pas dans le plateau paye nous sinon ton ordinnateur se désactiver sous 4 jours");

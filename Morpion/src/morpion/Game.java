@@ -7,6 +7,7 @@ public class Game {
 	private Player p1;
 	//TODO ordinateur
 	
+	private Computer p2 ;
 	
 	
 	
@@ -17,6 +18,7 @@ public class Game {
 		
 		p1 = new Player(1);
 		//TODO creer ordinateur
+		p2 = new Computer(2);
 	}
 	
 	public void play() {
@@ -35,6 +37,17 @@ public class Game {
 			}
 			
 			//TODO pareil pour ordi 2 pour fin de partie
+			c = p2.play(p);
+			c.setStatut(p2.getSymbol().getVal());
+			
+			for(Quintuplet q : c.getlQuintu()) {
+				if(q.getValue() == Quintuplet.QUINTUPLET_AI * 5) {
+					end = 2;
+				}
+			}
+			if(end != 0) {
+				break;
+			}
 			
 			
 			
