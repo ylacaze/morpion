@@ -89,4 +89,7 @@ public class Plateau {
 		return casesPlateau;
 	}
 	
+	public List<Quintuplet> getQuintupletTT(){
+		return this.quintupletsTT;
+	}
 }
