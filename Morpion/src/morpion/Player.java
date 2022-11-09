@@ -13,6 +13,10 @@ public class Player {
 		this.score = 0; 
 	}
 	
+	public Symbol getSymbol() {
+		return this.symbol;
+	}
+	
 	public void add_score(Player p) {
 		p.score++;
 	}

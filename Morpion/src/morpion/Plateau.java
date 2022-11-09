@@ -9,7 +9,7 @@ public class Plateau {
 	private static int maxY = 0;
 	//private static int SIZE = maxX*maxY;
 	private List<Quintuplet> quintupletsTT = new ArrayList<Quintuplet>();
-	private List<Quintuplet> quintupletsOpen = new ArrayList<Quintuplet>();
+	private List<Quintuplet> quintupletsOpen;
 	private List<Case> casesPlateau = new ArrayList<Case>();
 	private Case plateau[][] = new Case[0][0];
 	
@@ -51,7 +51,18 @@ public class Plateau {
 		//faire une execption ici pour le cas ou on ne trouve pas la case 
 	}	
 	
-	public List<Quintuplet> initQuintuplet2(){
+	public List<Quintuplet> initBoard(){
+		
+		//init cases
+		for(int i = 0; i<maxY;i++) {
+			for(int j = 0; j<maxX; j++) {
+				plateau[j][i] = new Case(j,i,0);
+			}
+		}
+		
+		
+		
+		
 		Case c = plateau[0][0];
 		//int ii = 0;
 		for(int i = 0; i < this.plateau.length; i++ ) {
@@ -81,6 +92,7 @@ public class Plateau {
 			}
 
 		}
+		this.quintupletsOpen = quintupletsTT;
 		return quintupletsTT;
 	}
 

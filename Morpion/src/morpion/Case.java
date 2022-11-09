@@ -11,7 +11,7 @@ public class Case {
 	private int statut;
 	private List<Quintuplet> lQuintu = new ArrayList<Quintuplet>();
 	
-	Case(int x, int y, int val, Symbol s){
+	public Case(int x, int y, int val){
 		this.posx = x;
 		this.posy = y;
 		this.value = val;
@@ -60,6 +60,12 @@ public class Case {
 	public int getValue() {
 		return value;
 	}
+
+	public List<Quintuplet> getlQuintu() {
+		return lQuintu;
+	}
+	
+	
 	
 	
 	
