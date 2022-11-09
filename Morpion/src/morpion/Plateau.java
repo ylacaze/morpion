@@ -49,37 +49,12 @@ public class Plateau {
 		
 		return null;
 		//faire une execption ici pour le cas ou on ne trouve pas la case 
-	}
-	
-	
-//	public List<Quintuplet> initQuintuplet(){
-//		//prendre un plateau 
-//		//faire pour chaque case une verif a droite en haut a droite et bas droite 
-//		//a voir comment on gere ptetre oublier l'idee d'un tableau double  
-//		for(Case[] lignes : plateau) {
-//			int tsst = (lignes[]).
-//			if((lignes[]). +4 <= maxX) {
-//				for(Case colonnes : lignes) {
-//					if(colonnes.getPosY() + 4 <= maxY) {
-//						quintupletsTT.add(new Quintuplet(colonnes, this.getCase2_0(colonnes.getPosX(),colonnes.getPosY()+1), this.getCase2_0(colonnes.getPosX(),colonnes.getPosY()+2), this.getCase2_0(colonnes.getPosX(),colonnes.getPosY()+3), this.getCase2_0(colonnes.getPosX(),colonnes.getPosY()+4)));
-//					}
-//				}
-//			}
-//		}
-//		return quintupletsTT;
-//	}
-	
-	
+	}	
 	
 	public List<Quintuplet> initQuintuplet2(){
 		Case c = plateau[0][0];
 		//int ii = 0;
 		for(int i = 0; i < this.plateau.length; i++ ) {
-			 
-//			c = plateau[i][ii];
-//			if(c.getPosX() + 4 <= maxX) {
-//				quintupletsTT.add(new Quintuplet(c, plateau[i+1][ii], plateau[i+2][ii], plateau[i+3][ii], plateau[i+4][ii]));
-//			}
 			
 			for(int j = 0; j < plateau[i].length ; j++) {
 				c = plateau[i][j];
@@ -104,8 +79,14 @@ public class Plateau {
 					quintupletsTT.add(new Quintuplet(c, plateau[i+1][j-1], plateau[i+2][j-2], plateau[i+3][j-3], plateau[i+4][j-4]));
 				}
 			}
-			//ii++;
+
 		}
 		return quintupletsTT;
 	}
+
+
+	public List<Case> getCasesPlateau() {
+		return casesPlateau;
+	}
+	
 }

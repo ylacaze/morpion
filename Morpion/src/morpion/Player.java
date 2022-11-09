@@ -23,7 +23,7 @@ public class Player {
 
 	private void affiche_plateau(Plateau p) {
 		int x = 0 ;
-		for(Case c : p.cases) {
+		for(Case c : p.getCasesPlateau()) {
 			
 			if(c.getPosX() > x) { // Methode a voir après classe case 
 				System.out.println("\n");
@@ -49,12 +49,12 @@ public class Player {
 	    
 	    System.out.println("choisir une coordonnée y pour jouer");
 	    
-	    Scanner scanIn = new Scanner(System.in);
+	    scanIn = new Scanner(System.in);
 	    posy = scanIn.nextInt();
 	    scanIn.close();            
 	    System.out.println(posy);
 	    
-	    for(Case c : p.cases)
+	    for(Case c : p.getCasesPlateau())
 	    {
 	    	if(c.getPosX() == posx && c.getPosY() == posy)
 	    	{
