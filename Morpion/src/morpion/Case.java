@@ -22,7 +22,10 @@ public class Case {
 	private void setVal() {
 		value = 0;
 		for(Quintuplet c : lQuintu) {
+			if(statut ==0) {
 			value += c.getValue();
+			}
+			else c.setValue(-1);
 		}
 	}
 	
@@ -36,11 +39,11 @@ public class Case {
 	
 	public void setStatut(int stat) {
 		this.statut = stat;
-		for(Quintuplet c : lQuintu) {
-			 c.setNewVal();
+		for(Quintuplet q : lQuintu) {
+			 q.setNewVal();
 		}
-		setVal();
 	}
+	
 	
 	public void setList(List<Quintuplet> qList) {
 		lQuintu = qList;
@@ -57,5 +60,7 @@ public class Case {
 	public int getValue() {
 		return value;
 	}
+	
+	
 	
 }

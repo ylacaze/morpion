@@ -7,7 +7,7 @@ public class Player {
 	private Symbol symbol; 
 	private int score; 
 	
-	Player(int number){
+	public Player(int number){
 		this.number = number;
 		this.symbol = Symbol.getForm(number);
 		this.score = 0; 

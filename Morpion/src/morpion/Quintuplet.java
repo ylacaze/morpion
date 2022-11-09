@@ -61,5 +61,8 @@ public class Quintuplet {
 		return value;
 	}
 	
+	public void setValue(int x) {
+		this.value = x;
+	}
 	
 }
