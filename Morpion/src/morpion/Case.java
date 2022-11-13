@@ -19,7 +19,7 @@ public class Case {
 		
 	}
 	
-	private void setVal() {
+	public void setVal() {
 		value = 0;
 		for(Quintuplet c : lQuintu) {
 			if(statut ==0) {
@@ -65,8 +65,9 @@ public class Case {
 		return lQuintu;
 	}
 	
-	
-	
+	public void addQuint(Quintuplet q) {
+		lQuintu.add(q);
+	}
 	
 	
 }

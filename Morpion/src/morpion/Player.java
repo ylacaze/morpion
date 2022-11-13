@@ -27,14 +27,15 @@ public class Player {
 
 	private void affiche_plateau(Plateau p) {
 		int x = 0 ;
+				
 		for(Case c : p.getCasesPlateau()) {
-			
-			if(c.getPosX() > x) { // Methode a voir après classe case 
-				System.out.println("\n");
-				x = c.getPosX();
+
+			if(c.getPosX() == x) { // Methode a voir après classe case 
+				System.out.print("\n");
 			}
-			System.out.println("[" + Symbol.getForm(c.getStatut()).getChar() + "]"); // A changer pour mettre vrai méthode
+			System.out.print("[" + Symbol.getForm(c.getStatut()).getChar() + "]"); // A changer pour mettre vrai méthode
 		}
+		
 	}
 	
 	
@@ -44,20 +45,23 @@ public class Player {
 		int posy;
 		
 		affiche_plateau(p);
-		System.out.println("choisir une coordonnée x pour jouer");
+		System.out.println("\nchoisir une coordonnée x pour jouer");
 		
 		Scanner scanIn = new Scanner(System.in);
 	    posx = scanIn.nextInt();
-	    scanIn.close();            
+	                
 	    System.out.println(posx);
-	    
+	    	    
 	    System.out.println("choisir une coordonnée y pour jouer");
-	    
-	    scanIn = new Scanner(System.in);
-	    posy = scanIn.nextInt();
-	    scanIn.close();            
+
+		Scanner scanIn1 = new Scanner(System.in);
+
+	    posy = scanIn1.nextInt();
+	    //scanIn1.close(); 
+	    //scanIn.close();
 	    System.out.println(posy);
 	    
+	   
 	    for(Case c : p.getCasesPlateau())
 	    {
 	    	if(c.getPosX() == posx && c.getPosY() == posy)

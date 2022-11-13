@@ -43,12 +43,10 @@ public class Plateau {
 				if(c.getPosX() == posx && c.getPosY() == posy) {
 					return c; 
 				}
-				//sino il continu la boucle jusqu'à trouver notre case
+				//Sinon il continu la boucle jusqu'à trouver notre case
 			}
 		}
-		
 		return null;
-		//faire une execption ici pour le cas ou on ne trouve pas la case 
 	}	
 	
 	public List<Quintuplet> initBoard(){
@@ -56,7 +54,9 @@ public class Plateau {
 		//init cases
 		for(int i = 0; i<maxY+1;i++) {
 			for(int j = 0; j<maxX+1; j++) {
-				plateau[j][i] = new Case(j,i,0);
+				Case c = new Case(j,i,0); 
+				plateau[j][i] = c;
+				casesPlateau.add(c);
 			}
 		}
 		
@@ -69,22 +69,46 @@ public class Plateau {
 				
 				//on verifie les cases par rapport à la droite
 				if(c.getPosX() + 4 <= maxX) {
-					quintupletsTT.add(new Quintuplet(c, plateau[i+1][j], plateau[i+2][j], plateau[i+3][j], plateau[i+4][j]));
+					Quintuplet q = new Quintuplet(c, plateau[i+1][j], plateau[i+2][j], plateau[i+3][j], plateau[i+4][j]);
+					quintupletsTT.add(q);
+					c.addQuint(q);
+					plateau[i+1][j].addQuint(q);
+					plateau[i+2][j].addQuint(q);
+					plateau[i+3][j].addQuint(q);
+					plateau[i+4][j].addQuint(q);
 				}
 				
 				//on vérifie les cases par rapport au bas
 				if(c.getPosY() + 4 <= maxY) {
-					quintupletsTT.add(new Quintuplet(c, plateau[i][j+1], plateau[i][j+2], plateau[i][j+3], plateau[i][j+4]));
+					Quintuplet q = new Quintuplet(c, plateau[i][j+1], plateau[i][j+2], plateau[i][j+3], plateau[i][j+4]);
+					quintupletsTT.add(q);
+					c.addQuint(q);
+					plateau[i][j+1].addQuint(q);
+					plateau[i][j+2].addQuint(q);
+					plateau[i][j+3].addQuint(q);
+					plateau[i][j+4].addQuint(q);
 				}
 				
 				//on vérifie maintenant les diagonales supérieures Bas-Droite 
 				if(c.getPosX() + 4 <= maxX && c.getPosY() + 4 <= maxY) {
-					quintupletsTT.add(new Quintuplet(c, plateau[i+1][j+1], plateau[i+2][j+2], plateau[i+3][j+3], plateau[i+4][j+4]));
+					Quintuplet q = new Quintuplet(c, plateau[i+1][j+1], plateau[i+2][j+2], plateau[i+3][j+3], plateau[i+4][j+4]);
+					quintupletsTT.add(q);
+					c.addQuint(q);
+					plateau[i+1][j+1].addQuint(q);
+					plateau[i+2][j+2].addQuint(q);
+					plateau[i+3][j+3].addQuint(q);
+					plateau[i+4][j+4].addQuint(q);
 				}
 				
 				//on vérifie pour finir les diagonales supérieures Haut-Droite 
 				if(c.getPosX() + 4 <= maxX && c.getPosY() - 4 >= 0) {
-					quintupletsTT.add(new Quintuplet(c, plateau[i+1][j-1], plateau[i+2][j-2], plateau[i+3][j-3], plateau[i+4][j-4]));
+					Quintuplet q = new Quintuplet(c, plateau[i+1][j-1], plateau[i+2][j-2], plateau[i+3][j-3], plateau[i+4][j-4]);
+					quintupletsTT.add(q);
+					c.addQuint(q);
+					plateau[i+1][j-1].addQuint(q);
+					plateau[i+2][j-2].addQuint(q);
+					plateau[i+3][j-3].addQuint(q);
+					plateau[i+4][j-4].addQuint(q);
 				}
 			}
 
