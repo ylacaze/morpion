@@ -21,12 +21,15 @@ public class Case {
 	
 	public void setVal() {
 		value = 0;
-		for(Quintuplet c : lQuintu) {
-			if(statut ==0) {
-			value += c.getValue();
+		if(statut == 0) {
+			for(Quintuplet c : lQuintu) {
+				value += c.getValue();
 			}
-			else c.setValue(-1);
 		}
+		else {
+			value = -1;
+		}
+		
 	}
 	
 	public List<Quintuplet> qListe(){		
