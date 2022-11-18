@@ -12,10 +12,10 @@ public class Quintuplet {
 	public static final int QUINTUPLET_AI = 6;
 	public static final int QUINTUPLET_PLAYER = 5; 
 	public static final int QUINTUPLET_AI2 = 10; 
-	public static final int QUINTUPLET_AI3 = 15; 
+	public static final int QUINTUPLET_AI3 = 25; 
 	public static final int QUINTUPLET_AI4 = 1000; 
 	public static final int QUINTUPLET_PLAYER2 = 7; 
-	public static final int QUINTUPLET_PLAYER3 = 15; 
+	public static final int QUINTUPLET_PLAYER3 = 35; 
 	public static final int QUINTUPLET_PLAYER4 = 100; 
 	
 	
