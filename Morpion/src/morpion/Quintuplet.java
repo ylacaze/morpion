@@ -5,10 +5,19 @@ import java.util.List;
 
 public class Quintuplet {
 
+	public static final int PLAYER_WIN = -1;
+	public static final int AI_WIN = -2;
 	public static final int QUINTUPLET_CLOSED = 0;
 	public static final int QUINTUPLET_EMPTY = 1;
 	public static final int QUINTUPLET_AI = 6;
-	public static final int QUINTUPLET_PLAYER = 5;
+	public static final int QUINTUPLET_PLAYER = 5; 
+	public static final int QUINTUPLET_AI2 = 10; 
+	public static final int QUINTUPLET_AI3 = 15; 
+	public static final int QUINTUPLET_AI4 = 1000; 
+	public static final int QUINTUPLET_PLAYER2 = 7; 
+	public static final int QUINTUPLET_PLAYER3 = 15; 
+	public static final int QUINTUPLET_PLAYER4 = 100; 
+	
 	
 	private int value = 0;
 	private List<Case> cases = new ArrayList<Case>();
@@ -47,13 +56,44 @@ public class Quintuplet {
 			}
 			else {
 				if(numS == 2) {
-					value = nbS * QUINTUPLET_AI;
+					switch(nbS) { // switch pour varier les valeurs des quintuplets par rapport au nb de symbole côté AI / Player
+						case 1 : 
+							value = QUINTUPLET_AI;
+							break;
+						case 2 : 
+							value = QUINTUPLET_AI2;
+							break;
+						case 3 : 
+							value = QUINTUPLET_AI3;
+							break;
+						case 4 : 
+							value = QUINTUPLET_AI4;
+							break;
+						case 5 :
+							value = AI_WIN;
+							break;
+					}
 				}
 				else {
-					value = nbS * QUINTUPLET_PLAYER;
+					switch(nbS) {
+					case 1 : 
+						value = QUINTUPLET_PLAYER;
+						break;
+					case 2 : 
+						value = QUINTUPLET_PLAYER2;
+						break;
+					case 3 : 
+						value = QUINTUPLET_PLAYER3;
+						break;
+					case 4 : 
+						value = QUINTUPLET_PLAYER4;
+						break;
+					case 5 : 
+						value = PLAYER_WIN;
+						break;
+					}						
 				}
-			}
-				
+			}	
 		}
 	}
 	
@@ -63,6 +103,10 @@ public class Quintuplet {
 	
 	public void setValue(int x) {
 		this.value = x;
+	}
+	
+	public boolean isOpen() {
+		return open;
 	}
 	
 }

@@ -3,13 +3,11 @@ package morpion;
 import java.util.Scanner;
 
 public class Player {
-	private int number; 
-	private Symbol symbol; 
+	protected Symbol symbol; 
 	private int score; 
 	
-	public Player(int number){
-		this.number = number;
-		this.symbol = Symbol.getForm(number);
+	public Player(){
+		this.symbol = Symbol.getForm(1);
 		this.score = 0; 
 	}
 	
@@ -27,13 +25,30 @@ public class Player {
 
 	private void affiche_plateau(Plateau p) {
 		int x = 0 ;
+		int j = 0;
+		System.out.print("  ");
+		for(int i =0; i<= p.getX();i++) {
+			if(i >= 10) {
+				System.out.print(" "+ i); 
+			}else {
+				System.out.print(" "+ i + " "); 
+			}
 				
+			
+		}
+		
 		for(Case c : p.getCasesPlateau()) {
 
-			if(c.getPosX() == x) { // Methode a voir après classe case 
+			if(c.getPosX() == x) {
 				System.out.print("\n");
+				System.out.print(j);
+				if(j<10) {
+					System.out.print(" ");
+				}
+				
+				j++;
 			}
-			System.out.print("[" + Symbol.getForm(c.getStatut()).getChar() + "]"); // A changer pour mettre vrai méthode
+			System.out.print("[" + Symbol.getForm(c.getStatut()).getChar() + "]"); 
 		}
 		
 	}
@@ -57,8 +72,7 @@ public class Player {
 		Scanner scanIn1 = new Scanner(System.in);
 
 	    posy = scanIn1.nextInt();
-	    //scanIn1.close(); 
-	    //scanIn.close();
+	    
 	    System.out.println(posy);
 	    
 	   
@@ -72,7 +86,7 @@ public class Player {
 	    		}else return c;
 	    	}
 	    }
-	    System.err.println("ta case n'est pas dans le plateau paye nous sinon ton ordinnateur se désactiver sous 4 jours");
+	    System.err.println("Veuillez jouer dans le tableau");
 	    return play(p);    
 	}
 }

@@ -22,8 +22,8 @@ public class Case {
 	public void setVal() {
 		value = 0;
 		if(statut == 0) {
-			for(Quintuplet c : lQuintu) {
-				value += c.getValue();
+			for(Quintuplet q : lQuintu) {
+				value += q.getValue();
 			}
 		}
 		else {

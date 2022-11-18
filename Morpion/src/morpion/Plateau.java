@@ -5,11 +5,9 @@ import java.util.List;
 
 public class Plateau {
 	
-	private static int maxX = 0;
-	private static int maxY = 0;
-	//private static int SIZE = maxX*maxY;
+	private int maxX = 0;
+	private int maxY = 0;
 	private List<Quintuplet> quintupletsTT = new ArrayList<Quintuplet>();
-	private List<Quintuplet> quintupletsOpen;
 	private List<Case> casesPlateau = new ArrayList<Case>();
 	private Case plateau[][] = new Case[0][0];
 	
@@ -31,23 +29,8 @@ public class Plateau {
 				}
 			}
 		}
-		//enlever le return ct juste pour verif la valeur du renvoie et enlever les warning
 		return plateau[0][0];
-		//renvoie d'une exception pour le fait que les coordonnées ne correspondent à aucune case
 	}
-	
-	public Case getCase2_0(int posx, int posy) {
-		
-		if(!(this.casesPlateau.isEmpty())) {
-			for(Case c : casesPlateau) {
-				if(c.getPosX() == posx && c.getPosY() == posy) {
-					return c; 
-				}
-				//Sinon il continu la boucle jusqu'à trouver notre case
-			}
-		}
-		return null;
-	}	
 	
 	public List<Quintuplet> initBoard(){
 		
@@ -113,7 +96,7 @@ public class Plateau {
 			}
 
 		}
-		this.quintupletsOpen = quintupletsTT;
+		
 		return quintupletsTT;
 	}
 
@@ -124,5 +107,12 @@ public class Plateau {
 	
 	public List<Quintuplet> getQuintupletTT(){
 		return this.quintupletsTT;
+	}
+	
+	public int getX() {
+		return this.maxX;
+	}
+	public int getY() {
+		return this.maxY;
 	}
 }

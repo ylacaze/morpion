@@ -2,8 +2,9 @@ package morpion;
 
 public class Computer extends Player {
 	 
-	public Computer(int number){
-		super(number);	
+	public Computer(){
+		super();
+		this.symbol = Symbol.getForm(2);
 	}
 	
 	@Override
