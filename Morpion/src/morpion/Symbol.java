@@ -3,8 +3,8 @@ package morpion;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum Symbol {
-	EMPTY(0,' '),CIRCLE(1,'O'),CROSS(2,'X');
+public class Symbol {
+	//EMPTY(0,' '),CIRCLE(1,'O'),CROSS(2,'X'),lettreA(3,'A');
 
 	static private List<Symbol> liste = new ArrayList<Symbol>();
 	
@@ -13,26 +13,27 @@ public enum Symbol {
 	private int val;
 	private char charac;
 	
-	private Symbol(int nb, char c) {
+	Symbol(int nb, char c) {
 		val = nb;
 		charac = c;
-		
+		liste.add(this);
 	}
 	
 	public int getVal() {
 		return this.val;
 	}
 	
-	private static void Fill() {
+	/*private static void Fill() {
 		if(!filled) {
 			liste.add(EMPTY);
 			liste.add(CIRCLE);
 			liste.add(CROSS);
+			liste.add(lettreA);
 		}
-	}
+	}*/
 	
 	public static Symbol getForm(int nb) {
-		Fill();
+		
 		for(Symbol s : liste) {
 			if(s.val == nb) {
 				return s;
@@ -43,7 +44,7 @@ public enum Symbol {
 	}
 	
 	public char getChar() {
-		Fill();
+		
 		return charac;
 	}
 	

@@ -1,13 +1,14 @@
 package morpion;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Player {
 	protected Symbol symbol; 
 	private int score; 
 	
-	public Player(){
-		this.symbol = Symbol.getForm(1);
+	public Player(Symbol s){
+		this.symbol = s;
 		this.score = 0; 
 	}
 	
@@ -23,7 +24,7 @@ public class Player {
 		return score;
 	}
 
-	private void affiche_plateau(Plateau p) {
+	public static void affiche_plateau(Plateau p) {
 		int x = 0 ;
 		int j = 0;
 		System.out.print("  ");
@@ -59,15 +60,18 @@ public class Player {
 		int posx;
 		int posy;
 		
+		
+		
+		
 		affiche_plateau(p);
-		System.out.println("\nchoisir une coordonnée x pour jouer");
+		System.out.println("\nJoueur " + this.symbol.getVal() +"choisir une coordonnée x pour jouer");
 		
 		Scanner scanIn = new Scanner(System.in);
 	    posx = scanIn.nextInt();
 	                
 	    System.out.println(posx);
 	    	    
-	    System.out.println("choisir une coordonnée y pour jouer");
+	    System.out.println("Joueur " + this.symbol.getVal() +"choisir une coordonnée y pour jouer");
 
 		Scanner scanIn1 = new Scanner(System.in);
 

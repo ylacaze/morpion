@@ -31,7 +31,7 @@ public class Quintuplet {
 		cases.add(c5);
 	}
 	
-	public void setNewVal() {
+	public void setNewVal(int numOrdi) {
 		int nbS = 0;
 		int numS = 0;
 		for(Case c : cases) {
@@ -55,7 +55,7 @@ public class Quintuplet {
 				value = QUINTUPLET_EMPTY;
 			}
 			else {
-				if(numS == 2) {
+				if(numS == numOrdi) {
 					switch(nbS) { // switch pour varier les valeurs des quintuplets par rapport au nb de symbole côté AI / Player
 						case 1 : 
 							value = QUINTUPLET_AI;
@@ -107,6 +107,10 @@ public class Quintuplet {
 	
 	public boolean isOpen() {
 		return open;
+	}
+	
+	public List<Case> getCases(){
+		return this.cases;
 	}
 	
 }

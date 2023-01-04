@@ -42,9 +42,7 @@ public class Case {
 	
 	public void setStatut(int stat) {
 		this.statut = stat;
-		for(Quintuplet q : lQuintu) {
-			 q.setNewVal();
-		}
+		
 	}
 	
 	
