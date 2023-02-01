@@ -1,6 +1,5 @@
 package morpion;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Player {
@@ -16,8 +15,8 @@ public class Player {
 		return this.symbol;
 	}
 	
-	public void add_score(Player p) {
-		p.score++;
+	public void add_score() {
+		this.score++;
 	}
 
 	public int getScore() {
@@ -33,9 +32,7 @@ public class Player {
 				System.out.print(" "+ i); 
 			}else {
 				System.out.print(" "+ i + " "); 
-			}
-				
-			
+			}		
 		}
 		
 		for(Case c : p.getCasesPlateau()) {
@@ -58,10 +55,7 @@ public class Player {
 	public Case play(Plateau p) {
 		
 		int posx;
-		int posy;
-		
-		
-		
+		int posy;	
 		
 		affiche_plateau(p);
 		System.out.println("\nJoueur " + this.symbol.getVal() +"choisir une coordonnée x pour jouer");
@@ -78,7 +72,6 @@ public class Player {
 	    posy = scanIn1.nextInt();
 	    
 	    System.out.println(posy);
-	    
 	   
 	    for(Case c : p.getCasesPlateau())
 	    {
@@ -92,5 +85,18 @@ public class Player {
 	    }
 	    System.err.println("Veuillez jouer dans le tableau");
 	    return play(p);    
+	}
+	
+	public void calculScore(Plateau p) {
+		for(Quintuplet q : p.getQuintupletTT()) {
+			q.setNewVal(-1);
+			if(q.getValue() == Quintuplet.PLAYER_WIN) {
+				System.out.print("PRESQUE");
+				if (q.getCases().get(0).getStatut() == this.symbol.getVal()) {
+					System.out.print("YES");
+					score++;
+				}
+			}
+		}
 	}
 }

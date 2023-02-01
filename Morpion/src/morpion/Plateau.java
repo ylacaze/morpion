@@ -99,6 +99,30 @@ public class Plateau {
 		
 		return quintupletsTT;
 	}
+	
+	public void changeQ(Quintuplet quint) {
+		
+		for (Quintuplet q : quintupletsTT) {
+			int compteur = 0;
+			
+			for (Case c : quint.getCases()) {
+				for (Case c2 : q.getCases()) {
+					if (c.getPosX() == c2.getPosX() && c.getPosY() == c2.getPosY()) {
+						compteur++;
+					}
+					
+					if(compteur >= 2) break;
+				}
+				
+				if(compteur >= 2) break;
+			}
+			
+			if(compteur >= 2) {
+				q.setForcedTrue();
+			}
+			
+		}
+	}
 
 
 	public List<Case> getCasesPlateau() {

@@ -8,15 +8,7 @@ public class Game {
 	
 	private Plateau p;
 	
-	private Player p1;
-	
-	private Computer p2 ;
-	
-	private Player p3;
-	
 	private List<Player> players = new ArrayList<Player>();
-	
-	
 	
 	public void initGame(int tailleX, int tailleY) {
 		
@@ -61,33 +53,73 @@ public class Game {
 	public void play() {
 		
 		
-		int end = 0;
+		boolean end = false;
 		while (true) {
 			for(Player pCourant : players) {
 				Case c = pCourant.play(p);
 				c.setStatut(pCourant.getSymbol().getVal());
 				
-				end = End(p,c);
-				if(end != 0) {
+				for(Quintuplet q : c.getlQuintu()) {
+					q.setNewVal(-1);
+					if(q.getValue() == Quintuplet.PLAYER_WIN) {
+						p.changeQ(q);
+						break;
+					}
+				}
+				
+				end = draw(p);//End(p,c);
+				if(end) {
 					break;
 				}
 			}
-			if(end != 0) {
+			if(end) {
 				break;
 			}
 		}
 		Player.affiche_plateau(p);
-		if(end == -1) {
-			System.out.println("\nFin de partie, égalité");
+		
+		for(Player j : players) {
+			j.calculScore(p);
+		}
+		
+		List<Integer> indice = new ArrayList<Integer>();
+		int scoreMax = -20;
+		boolean equal = false;
+		
+		int compteur = 1;
+		
+		for(Player j : players) {
+			
+			if (j.getScore() == scoreMax) {
+				equal = true;
+				indice.add(compteur);
+			}
+			
+			if(j.getScore() > scoreMax) {
+				scoreMax = j.getScore();
+				equal = false;
+				indice.clear();
+				indice.add(compteur);
+			}
+			
+			compteur++;
+		}
+		
+		if(equal) {
+			System.out.println("\nFin de partie, égalité aux Joueurs : " + scoreMax);
+			for(Integer i : indice) {
+				System.out.println("- "+i);
+			}
 			
 		}
 		else {
-			System.out.println("\nFin de partie, Félicitation au joueur" + end);
+			System.out.println("\nFin de partie, Félicitation au Joueur" + indice.get(0) + " \nAvec un score de "+scoreMax);
 		}
 		
 	}
 	
 	private int End(Plateau p, Case c) {
+		/*
 		for(Quintuplet q : p.getQuintupletTT()) {
 			if(q.getValue() == Quintuplet.AI_WIN) {
 				System.out.println("\nFini");
@@ -99,6 +131,9 @@ public class Game {
 				}
 			}
 		}
+		*/
+		
+		
 		if(draw(p)) {
 			System.out.println("\nFini");
 			return -1;
