@@ -99,6 +99,31 @@ public class Plateau {
 		
 		return quintupletsTT;
 	}
+	
+	public void changeQ(Quintuplet quint) {
+		
+		for (Quintuplet q : quintupletsTT) {
+			int compteur = 0;
+			
+			for (Case c : quint.getCases()) {
+				for (Case c2 : q.getCases()) {
+					if (c.getPosX() == c2.getPosX() && c.getPosY() == c2.getPosY()) {
+						compteur++;
+					}
+					
+					if(compteur >= 2) break;
+				}
+				
+				if(compteur >= 2) break;
+			}
+			
+			if(compteur >= 2) {
+				if(q != quint) {
+					q.setForcedTrue();
+				}else q.setClosed();
+			}
+		}
+	}
 
 
 	public List<Case> getCasesPlateau() {
@@ -114,5 +139,41 @@ public class Plateau {
 	}
 	public int getY() {
 		return this.maxY;
+	}
+	
+	public void colorPlat() {
+		List<Case> cases = new ArrayList<Case>();
+		for(Quintuplet q : this.quintupletsTT) {
+			if (q.getValue() == Quintuplet.PLAYER_WIN) {
+				cases.addAll(q.getCases());
+			}
+		}
+		
+		int x = 0 ;
+		int j = 0;
+		System.out.print("  ");
+		for(int i =0; i<= this.getX();i++) {
+			if(i >= 10) {
+				System.out.print(" "+ i); 
+			}else {
+				System.out.print(" "+ i + " "); 
+			}		
+		}
+		
+		for(Case c : this.getCasesPlateau()) {
+
+			if(c.getPosX() == x) {
+				System.out.print("\n");
+				System.out.print(j);
+				if(j<10) {
+					System.out.print(" ");
+				}
+				
+				j++;
+			}
+			if(cases.contains(c)) {
+				System.out.print("[" +"\033[1;32m"+ Symbol.getForm(c.getStatut()).getChar() + "\033[0m"+ "]");
+			}else System.out.print("[" + Symbol.getForm(c.getStatut()).getChar() + "]"); 
+		}
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Quintuplet {
 
+	
 	public static final int PLAYER_WIN = -1;
 	public static final int AI_WIN = -2;
 	public static final int QUINTUPLET_CLOSED = 0;
@@ -18,7 +19,7 @@ public class Quintuplet {
 	public static final int QUINTUPLET_PLAYER3 = 35; 
 	public static final int QUINTUPLET_PLAYER4 = 100; 
 	
-	
+	private boolean forced = false;
 	private int value = 0;
 	private List<Case> cases = new ArrayList<Case>();
 	private boolean open = true;
@@ -32,68 +33,75 @@ public class Quintuplet {
 	}
 	
 	public void setNewVal(int numOrdi) {
-		int nbS = 0;
-		int numS = 0;
-		for(Case c : cases) {
-			if(c.getStatut() != 0) {
-				if(nbS != 0 && c.getStatut() != numS) { //deux case de deux symbole différent
-					open = false;
-					value = QUINTUPLET_CLOSED;
-					break;
-				}
-				
-				if(nbS == 0) {  //premiére case avec un symbole
-					numS = c.getStatut();
-				}
-				
-				nbS++;  // deux case de meme symbole
-				
-			}
-		}
-		if(open) {			//calcule valeur
-			if(nbS == 0){
-				value = QUINTUPLET_EMPTY;
-			}
-			else {
-				if(numS == numOrdi) {
-					switch(nbS) { // switch pour varier les valeurs des quintuplets par rapport au nb de symbole côté AI / Player
-						case 1 : 
-							value = QUINTUPLET_AI;
-							break;
-						case 2 : 
-							value = QUINTUPLET_AI2;
-							break;
-						case 3 : 
-							value = QUINTUPLET_AI3;
-							break;
-						case 4 : 
-							value = QUINTUPLET_AI4;
-							break;
-						case 5 :
-							value = AI_WIN;
-							break;
+		
+		if (forced == true) {
+			open = false;
+			value = QUINTUPLET_CLOSED;
+		}else {
+			
+			int nbS = 0;
+			int numS = 0;
+			for(Case c : cases) {
+				if(c.getStatut() != 0) {
+					if(nbS != 0 && c.getStatut() != numS) { //deux case de deux symbole différent
+						open = false;
+						value = QUINTUPLET_CLOSED;
+						break;
 					}
+					
+					if(nbS == 0) {  //premiére case avec un symbole
+						numS = c.getStatut();
+					}
+					
+					nbS++;  // deux case de meme symbole
+					
+				}
+			}
+			if(open) {			//calcule valeur
+				if(nbS == 0){
+					value = QUINTUPLET_EMPTY;
 				}
 				else {
-					switch(nbS) {
-					case 1 : 
-						value = QUINTUPLET_PLAYER;
-						break;
-					case 2 : 
-						value = QUINTUPLET_PLAYER2;
-						break;
-					case 3 : 
-						value = QUINTUPLET_PLAYER3;
-						break;
-					case 4 : 
-						value = QUINTUPLET_PLAYER4;
-						break;
-					case 5 : 
-						value = PLAYER_WIN;
-						break;
-					}						
-				}
-			}	
+					if(numS == numOrdi) {
+						switch(nbS) { // switch pour varier les valeurs des quintuplets par rapport au nb de symbole côté AI / Player
+							case 1 : 
+								value = QUINTUPLET_AI;
+								break;
+							case 2 : 
+								value = QUINTUPLET_AI2;
+								break;
+							case 3 : 
+								value = QUINTUPLET_AI3;
+								break;
+							case 4 : 
+								value = QUINTUPLET_AI4;
+								break;
+							case 5 :
+								value = AI_WIN;
+								break;
+						}
+					}
+					else {
+						switch(nbS) {
+						case 1 : 
+							value = QUINTUPLET_PLAYER;
+							break;
+						case 2 : 
+							value = QUINTUPLET_PLAYER2;
+							break;
+						case 3 : 
+							value = QUINTUPLET_PLAYER3;
+							break;
+						case 4 : 
+							value = QUINTUPLET_PLAYER4;
+							break;
+						case 5 : 
+							value = PLAYER_WIN;
+							break;
+						}						
+					}
+				}	
+			}
 		}
 	}
 	
@@ -113,4 +121,11 @@ public class Quintuplet {
 		return this.cases;
 	}
 	
+	public void setForcedTrue() {
+		forced = true;
+	}
+	
+	public void setClosed() {
+		this.open = false;
+	}
 }
