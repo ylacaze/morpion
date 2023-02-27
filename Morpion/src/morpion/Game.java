@@ -76,7 +76,7 @@ public class Game {
 				break;
 			}
 		}
-		Player.affiche_plateau(p);
+		p.colorPlat();
 		
 		for(Player j : players) {
 			j.calculScore(p);

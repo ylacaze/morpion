@@ -124,4 +124,8 @@ public class Quintuplet {
 	public void setForcedTrue() {
 		forced = true;
 	}
+	
+	public void setClosed() {
+		this.open = false;
+	}
 }

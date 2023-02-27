@@ -91,9 +91,7 @@ public class Player {
 		for(Quintuplet q : p.getQuintupletTT()) {
 			q.setNewVal(-1);
 			if(q.getValue() == Quintuplet.PLAYER_WIN) {
-				System.out.print("PRESQUE");
 				if (q.getCases().get(0).getStatut() == this.symbol.getVal()) {
-					System.out.print("YES");
 					score++;
 				}
 			}

@@ -118,9 +118,10 @@ public class Plateau {
 			}
 			
 			if(compteur >= 2) {
-				q.setForcedTrue();
+				if(q != quint) {
+					q.setForcedTrue();
+				}else q.setClosed();
 			}
-			
 		}
 	}
 
@@ -138,5 +139,41 @@ public class Plateau {
 	}
 	public int getY() {
 		return this.maxY;
+	}
+	
+	public void colorPlat() {
+		List<Case> cases = new ArrayList<Case>();
+		for(Quintuplet q : this.quintupletsTT) {
+			if (q.getValue() == Quintuplet.PLAYER_WIN) {
+				cases.addAll(q.getCases());
+			}
+		}
+		
+		int x = 0 ;
+		int j = 0;
+		System.out.print("  ");
+		for(int i =0; i<= this.getX();i++) {
+			if(i >= 10) {
+				System.out.print(" "+ i); 
+			}else {
+				System.out.print(" "+ i + " "); 
+			}		
+		}
+		
+		for(Case c : this.getCasesPlateau()) {
+
+			if(c.getPosX() == x) {
+				System.out.print("\n");
+				System.out.print(j);
+				if(j<10) {
+					System.out.print(" ");
+				}
+				
+				j++;
+			}
+			if(cases.contains(c)) {
+				System.out.print("[" +"\033[1;32m"+ Symbol.getForm(c.getStatut()).getChar() + "\033[0m"+ "]");
+			}else System.out.print("[" + Symbol.getForm(c.getStatut()).getChar() + "]"); 
+		}
 	}
 }
