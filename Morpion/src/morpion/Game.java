@@ -63,7 +63,6 @@ public class Game {
 					q.setNewVal(-1);
 					if(q.getValue() == Quintuplet.PLAYER_WIN) {
 						p.changeQ(q);
-						break;
 					}
 				}
 				
