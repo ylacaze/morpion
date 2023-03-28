@@ -22,7 +22,8 @@ public class app extends Application {
     /*public static void main(String[] args) {
         launch(args);
     }*/
-    int x,y;
+
+    private static int x,y;
     public app(/*int X, int Y*/){
         super();
         /*x=X;
@@ -41,10 +42,11 @@ public class app extends Application {
         }*/
     }
 
-    public void lancer(String[] args, int X , int Y){
+    public void lancer(String[] args, int X,int Y){
+        this.x=X;
+        this.y=Y;
         launch(args);
-        x=X;
-        y=Y;
+
     }
 
     private void eventLabel(int i, int j){
@@ -55,12 +57,15 @@ public class app extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+
         grille = new GridPane();
         grille.setGridLinesVisible(true);
         labels = new Label[x][y];
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                Label l = new Label();
+                Label l = new Label("");
+                l.setPrefHeight(25); l.setPrefWidth(25);
                 labels[i][j] = l;
                 grille.add(l,i,j);
                 int finalI = i;
@@ -68,20 +73,30 @@ public class app extends Application {
                 l.setOnMouseClicked(e -> eventLabel(finalI, finalJ));
             }
         }
+        grille.setBorder(new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID,
+                new CornerRadii(2),new BorderWidths(2))));
         boxPrincipale = new VBox();
 
-        nomLabel = new Label();
-        symboleLabel = new Label();
+        nomLabel = new Label("nom");
+        symboleLabel = new Label("symbole");
         boxPrincipale.getChildren().addAll(grille,nomLabel,symboleLabel);
+
+
 
         Pane p = new Pane();
         p.getChildren().add(boxPrincipale);
+
+        ready = true;
 
         primaryStage.setTitle("Morpion");
         primaryStage.setScene(new Scene(p,500,500));
         primaryStage.show();
 
-        //ready = true;
+
+    }
+
+    public boolean getReady(){
+        return ready;
     }
 
     public void aJouer(){

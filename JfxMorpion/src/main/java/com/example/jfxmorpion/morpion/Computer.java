@@ -10,7 +10,7 @@ public class Computer extends Player {
 	}
 	
 	@Override
-	public Case play(Plateau p) {
+	public Case play(Plateau p,Main main) {
 		
 		List<Quintuplet> lQuintu = p.getQuintupletTT();
 		for(Quintuplet q : lQuintu) {

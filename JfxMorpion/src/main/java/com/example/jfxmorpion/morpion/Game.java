@@ -11,7 +11,7 @@ public class Game {
 	
 	private List<Player> players = new ArrayList<Player>();
 
-	private app application;
+	private Main application = null;
 
 	public Game(String[] args){
 		this.args = args;
@@ -54,27 +54,22 @@ public class Game {
 	    		break;
 	    	}
 	    }
-		application = new app();
-		application.lancer(args,p.getX(),p.getY());
 
-		/*while(true){
-			if (application.ready == true){
-				break;
-			}
-		}*/
+
+
 
 	}
 	
-	public void play() {
+	public void play(Main main) throws InterruptedException {
 		
-		
+		application = main;
 		boolean end = false;
 		while (true) {
 			int i =1;
 			for(Player pCourant : players) {
 				application.getNomLabel().setText("Joueur n'" + i);
 				application.getSymboleLabel().setText("Symbole : " + pCourant.symbol.getChar());
-				Case c = pCourant.play(p);
+				Case c = pCourant.play(p,application);
 				c.setStatut(pCourant.getSymbol().getVal());
 				application.getLabels()[c.getPosX()][c.getPosY()].setText(" "+pCourant.getSymbol().getChar()+" ");
 				for(Quintuplet q : c.getlQuintu()) {
@@ -159,7 +154,7 @@ public class Game {
 		return 0;
 	}
 	
-	private boolean draw(Plateau p) {
+	public boolean draw(Plateau p) {
 		boolean equals = true;
 		for(Quintuplet q : p.getQuintupletTT()) {
 			if(q.isOpen()) {
@@ -206,4 +201,15 @@ public class Game {
 		return new Computer(new Symbol(num,sym));
 	}
 
+	public Main getApplication(){
+		return application;
+	}
+
+	public Plateau getP() {
+		return p;
+	}
+
+	public List<Player> getPlayers() {
+		return players;
+	}
 }
