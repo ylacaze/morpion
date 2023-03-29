@@ -13,20 +13,20 @@ import java.util.Scanner;
 
 public class Main extends Application{
 	private static Game g;
-	public boolean ready = false;
-	VBox boxPrincipale;
-	GridPane grille;
+	private boolean ready = false;
+	private VBox boxPrincipale;
+	private GridPane grille;
 
-	Label[][] labels;
-	Label nomLabel,symboleLabel;
+	private Label[][] labels;
+	private Label nomLabel,symboleLabel;
 
-	int coordX,coordY;
-	boolean jouer = false;
+	private int coordX,coordY;
+	private boolean jouer = false;
 
-	Main m;
+	private Main m;
 
-	List<Player> players;
-	int playerCourant = 1;
+	private List<Player> players;
+	private int playerCourant = 1;
 
     /*public static void main(String[] args) {
         launch(args);

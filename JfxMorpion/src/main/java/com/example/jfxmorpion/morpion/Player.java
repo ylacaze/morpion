@@ -58,7 +58,7 @@ public class Player {
 		int posy;	
 		
 		affiche_plateau(p);
-		/*System.out.println("\nJoueur " + this.symbol.getVal() +"choisir une coordonnée x pour jouer");
+		System.out.println("\nJoueur " + this.symbol.getVal() +"choisir une coordonnée x pour jouer");
 		
 		Scanner scanIn = new Scanner(System.in);
 	    posx = scanIn.nextInt();
@@ -71,17 +71,9 @@ public class Player {
 
 	    posy = scanIn1.nextInt();
 	    
-	    System.out.println(posy);*/
+	    System.out.println(posy);
 
-		while(true){
-			//System.out.println("attete d'un clic val de jouer = "+main.jouer);
-			if (main.jouer){
-				posx = main.getCoordX();
-				posy = main.getCoordY();
-				main.aJouer();
-				break;
-			}
-		}
+
 	   
 	    for(Case c : p.getCasesPlateau())
 	    {

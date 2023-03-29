@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Game {
 
-	String[] args;
+	private String[] args;
 	private Plateau p;
 	
 	private List<Player> players = new ArrayList<Player>();
