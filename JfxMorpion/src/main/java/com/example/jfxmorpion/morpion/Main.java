@@ -28,9 +28,7 @@ public class Main extends Application{
 	private List<Player> players;
 	private int playerCourant = 1;
 
-    /*public static void main(String[] args) {
-        launch(args);
-    }*/
+
 
 	private static int x,y;
 

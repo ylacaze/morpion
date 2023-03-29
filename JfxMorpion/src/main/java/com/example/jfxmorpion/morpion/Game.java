@@ -79,7 +79,7 @@ public class Game {
 					}
 				}
 				
-				end = draw(p);//End(p,c);
+				end = draw(p);
 				if(end) {
 					break;
 				}
@@ -130,30 +130,7 @@ public class Game {
 		}
 		
 	}
-	
-	private int End(Plateau p, Case c) {
-		/*
-		for(Quintuplet q : p.getQuintupletTT()) {
-			if(q.getValue() == Quintuplet.AI_WIN) {
-				System.out.println("\nFini");
-				return q.getCases().get(0).getStatut();
-			}else {
-				if(q.getValue() == Quintuplet.PLAYER_WIN) {
-					System.out.println("\nFini");
-					return q.getCases().get(0).getStatut();
-				}
-			}
-		}
-		*/
-		
-		
-		if(draw(p)) {
-			System.out.println("\nFini");
-			return -1;
-		}
-		return 0;
-	}
-	
+
 	public boolean draw(Plateau p) {
 
 		boolean equals = true;
