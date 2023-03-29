@@ -144,7 +144,7 @@ public class Plateau {
 	public void colorPlat() {
 		List<Case> cases = new ArrayList<Case>();
 		for(Quintuplet q : this.quintupletsTT) {
-			if (q.getValue() == Quintuplet.PLAYER_WIN) {
+			if (q.getValue() == Quintuplet.PLAYER_WIN || q.getValue() == Quintuplet.AI_WIN) {
 				cases.addAll(q.getCases());
 			}
 		}

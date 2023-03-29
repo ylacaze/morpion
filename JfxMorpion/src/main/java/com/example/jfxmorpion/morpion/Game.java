@@ -155,9 +155,11 @@ public class Game {
 	}
 	
 	public boolean draw(Plateau p) {
+
 		boolean equals = true;
 		for(Quintuplet q : p.getQuintupletTT()) {
-			if(q.isOpen()) {
+			q.setNewVal(0);
+			if(q.getValue() != Quintuplet.PLAYER_WIN && q.getValue() != Quintuplet.QUINTUPLET_CLOSED && q.getValue() != Quintuplet.AI_WIN) {
 				equals = false;
 				break;
 			}

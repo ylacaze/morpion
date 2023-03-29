@@ -83,14 +83,14 @@ public class app extends Application {
 
 
 
-        Pane p = new Pane();
-        p.getChildren().add(boxPrincipale);
+
 
         ready = true;
 
         primaryStage.setTitle("Morpion");
-        primaryStage.setScene(new Scene(p,500,500));
+        primaryStage.setScene(new Scene(boxPrincipale,1000,1000));
         primaryStage.show();
+
 
 
     }

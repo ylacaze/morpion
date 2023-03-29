@@ -96,13 +96,16 @@ public class Main extends Application{
 		ready = true;
 
 		primaryStage.setTitle("Morpion");
-		primaryStage.setScene(new Scene(p,500,500));
+		primaryStage.setScene(new Scene(p,700,700));
 		primaryStage.show();
 
 		tourOrdi();
 
-		nomLabel.setText("Joueur " + playerCourant);
-		symboleLabel.setText("Symbole : "+ players.get(this.playerCourant-1).getSymbol().getChar());
+		if (!g.draw(g.getP())){
+			nomLabel.setText("Joueur " + playerCourant);
+			symboleLabel.setText("Symbole : "+ players.get(this.playerCourant-1).getSymbol().getChar());
+		}
+
 	}
 
 	public void lancer(String[] args, int X,int Y){
@@ -113,24 +116,55 @@ public class Main extends Application{
 	}
 
 	private void eventLabel(int i, int j){
+
 		System.out.println("click enregistrer" + i +j);
 		Plateau p = g.getP();
-		p.getCase(i,j).setStatut(players.get(this.playerCourant-1).getSymbol().getVal());
-		labels[i][j].setText(" " + players.get(this.playerCourant-1).getSymbol().getChar() + " ");
 
-		if (players.size() > playerCourant){
-			System.out.println("prochain joueur");
-			playerCourant++;
+		for(Case c : p.getCasesPlateau())
+		{
+			if(c.getPosX() == i && c.getPosY() == j)
+			{
+				if(c.getStatut() != 0 ) {
+					System.err.println("cette case est déjà joué");
+					break;
+				}else {
+					p.getCase(i,j).setStatut(players.get(this.playerCourant-1).getSymbol().getVal());
+					labels[i][j].setText(" " + players.get(this.playerCourant-1).getSymbol().getChar() + " ");
+
+
+					if (testFin()){
+						for (Label[] li : labels){
+							for (Label l : li){
+								//l.setDisable(true);
+								l.setOnMouseClicked(e -> e.consume());
+							}
+						}
+						break;
+					}
+					else {
+						if (players.size() > playerCourant){
+							System.out.println("prochain joueur");
+							playerCourant++;
+						}
+						else {
+							System.out.println("tour terminer");
+							playerCourant = 1;
+						}
+						tourOrdi();
+
+						nomLabel.setText("Joueur " + playerCourant);
+						symboleLabel.setText("Symbole : "+ players.get(this.playerCourant-1).getSymbol().getChar());
+					}
+
+
+				}
+			}
 		}
-		else {
-			System.out.println("tour terminer");
-			playerCourant = 1;
-		}
 
-		tourOrdi();
 
-		nomLabel.setText("Joueur " + playerCourant);
-		symboleLabel.setText("Symbole : "+ players.get(this.playerCourant-1).getSymbol().getChar());
+
+
+
 
 
 	}
@@ -143,12 +177,25 @@ public class Main extends Application{
 				c.setStatut(players.get(this.playerCourant-1).getSymbol().getVal());
 				labels[c.getPosX()][c.getPosY()].setText(" " + players.get(this.playerCourant-1).getSymbol().getChar() + " ");
 
-				if (players.size() > playerCourant){
-					playerCourant++;
+				if (testFin()){
+					for (Label[] li : labels){
+						for (Label l : li){
+							//l.setDisable(true);
+							l.setOnMouseClicked(e -> e.consume());
+						}
+					}
+					break;
 				}
 				else {
-					playerCourant = 1;
+					if (players.size() > playerCourant){
+						playerCourant++;
+					}
+					else {
+						playerCourant = 1;
+					}
 				}
+
+
 			}
 			else{
 				break;
@@ -177,8 +224,15 @@ public class Main extends Application{
 				}
 			}
 
-			nomLabel.setText("Le gagnant est le joueur : " + winner.getSymbol().getChar());
-			symboleLabel.setText("avec un score de " + score);
+			if (egalite){
+				nomLabel.setText("Egalité !");
+				symboleLabel.setText("avec un score de " + score);
+			}
+			else {
+				nomLabel.setText("Le gagnant est le symbole : " + winner.getSymbol().getChar());
+				symboleLabel.setText("avec un score de " + score);
+			}
+
 			return true;
 		}
 		else {
