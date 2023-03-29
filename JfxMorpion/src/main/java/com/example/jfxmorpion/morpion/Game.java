@@ -130,6 +130,7 @@ public class Game {
 		}
 		
 	}
+	
 
 	public boolean draw(Plateau p) {
 
