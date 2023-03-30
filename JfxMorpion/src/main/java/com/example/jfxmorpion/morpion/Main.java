@@ -129,7 +129,12 @@ public class Main extends Application{
 					p.getCase(i,j).setStatut(players.get(this.playerCourant-1).getSymbol().getVal());
 					labels[i][j].setText(" " + players.get(this.playerCourant-1).getSymbol().getChar() + " ");
 
-
+					for(Quintuplet q : c.getlQuintu()) {
+						q.setNewVal(-1);
+						if(q.getValue() == Quintuplet.PLAYER_WIN) {
+							p.changeQ(q);
+						}
+					}
 					if (testFin()){
 						for (Label[] li : labels){
 							for (Label l : li){
@@ -150,8 +155,7 @@ public class Main extends Application{
 						}
 						tourOrdi();
 
-						nomLabel.setText("Joueur " + playerCourant);
-						symboleLabel.setText("Symbole : "+ players.get(this.playerCourant-1).getSymbol().getChar());
+
 					}
 
 
@@ -175,6 +179,12 @@ public class Main extends Application{
 				c.setStatut(players.get(this.playerCourant-1).getSymbol().getVal());
 				labels[c.getPosX()][c.getPosY()].setText(" " + players.get(this.playerCourant-1).getSymbol().getChar() + " ");
 
+				for(Quintuplet q : c.getlQuintu()) {
+					q.setNewVal(-1);
+					if(q.getValue() == Quintuplet.PLAYER_WIN) {
+						g.getP().changeQ(q);
+					}
+				}
 				if (testFin()){
 					for (Label[] li : labels){
 						for (Label l : li){
@@ -191,6 +201,9 @@ public class Main extends Application{
 					else {
 						playerCourant = 1;
 					}
+
+					nomLabel.setText("Joueur " + playerCourant);
+					symboleLabel.setText("Symbole : "+ players.get(this.playerCourant-1).getSymbol().getChar());
 				}
 
 
@@ -203,6 +216,7 @@ public class Main extends Application{
 
 	private boolean testFin(){
 		Plateau p = g.getP();
+
 		if (g.draw(p)){
 			for(Player j : players) {
 				j.calculScore(p);
