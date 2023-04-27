@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author Documents
+ *
+ */
+module Classique {
+}
