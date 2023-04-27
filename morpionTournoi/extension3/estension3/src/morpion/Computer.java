@@ -1,20 +1,34 @@
 package morpion;
 
 import java.util.List;
-import java.util.Scanner;
 
-public class Computer extends Player {
-	 
-	public Computer(Symbol s){
-		super(s);
-	}
+import fr.IooGoZ.GomokolClient.interfaces.Player;
+
+public class Computer implements Player{
+	private char c;
+	private Plateau p;
+	private int id = -1;
 	
+	public Computer(Plateau p,char c) {
+		this.p = p;
+		this.c = c;
+	}
+
 	@Override
-	public Case play(Plateau p) {
-		
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public int getId() {
+		return id;
+	}
+
+	@Override
+	public int[] getStroke() {
 		List<Quintuplet> lQuintu = p.getQuintupletTT();
 		for(Quintuplet q : lQuintu) {
-			 q.setNewVal(this.symbol.getVal());
+			 q.setNewVal(this.id);
 		}
 		
 		int highest_value = 0;
@@ -26,8 +40,16 @@ public class Computer extends Player {
 				highest_case = c;
 			}
 		}
-		return highest_case;
+		int pos[] = new int[2];
+		pos[0] = highest_case.getPosX();
+		pos[1] = highest_case.getPosY();
+		return pos;
 	}
-	
-	
+
+	//déja récupérer dans le main
+	@Override
+	public void receiveNewStroke(int player_id, int[] stroke) {
+		
+	}
+
 }
