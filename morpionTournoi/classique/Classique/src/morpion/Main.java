@@ -35,7 +35,7 @@ public class Main {
 			int y = stroke[1];
 			
 			//On les place sur le plateau
-			p.getCase(x, y).setStatut(numPlayer);
+			p.getCase(x, y).setStatut(player_id);
 		}
 		
 	};
@@ -89,7 +89,7 @@ public class Main {
 			GamesManager.MANAGER.subscribeGroup(group_id, group);
 		}
 		
-	static void main(String[] args) {
+	public static void main(String[] args) {
 		try {
 			ExamplePlayer();
 		} catch (Exception e) {
