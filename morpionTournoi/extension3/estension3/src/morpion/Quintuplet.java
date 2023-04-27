@@ -127,6 +127,7 @@ public class Quintuplet {
 	
 	public void reinit() {
 		forced = false;
+		open = true;
 		this.setValue(QUINTUPLET_EMPTY);
 	}
 	
