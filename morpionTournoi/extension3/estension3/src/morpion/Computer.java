@@ -49,7 +49,12 @@ public class Computer implements Player{
 	//déja récupérer dans le main
 	@Override
 	public void receiveNewStroke(int player_id, int[] stroke) {
+		//On récupère les coordonnées du coup joué
+		int x = stroke[0];
+		int y = stroke[1];
 		
+		//On les place sur le plateau
+		p.getCase(x, y).setStatut(player_id);
 	}
 
 }

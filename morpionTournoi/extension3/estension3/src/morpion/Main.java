@@ -11,7 +11,7 @@ import fr.IooGoZ.GomokolClient.interfaces.Group;
 
 public class Main {
 	
-	public static int BOARD_SIZE = 15;
+	public static int BOARD_SIZE = 20;
 	public static int ORDER = 2;
 	public static int EMPTY = -1;
 	public static int numPlayer = 1;
@@ -73,10 +73,10 @@ public class Main {
 		
 		public static void ExamplePlayer() throws UnknownHostException, IOException, Exception {
 			//On définit l'adresse du serveur
-			String address = "127.0.0.1";
+			String address = "192.168.0.6";
 			
 			//On se connecte au serveur
-			GamesManager.MANAGER.connect(address, 8080);
+			GamesManager.MANAGER.connect(address, 12472);
 			
 			//Récupération de l'id du groupe
 			System.out.print("Entrez l'id du groupe : ");
@@ -91,6 +91,7 @@ public class Main {
 		
 	public static void main(String[] args) {
 		try {
+			p.initBoard();
 			ExamplePlayer();
 		} catch (Exception e) {
 			e.printStackTrace();
